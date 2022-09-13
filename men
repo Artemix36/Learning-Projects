@@ -1,0 +1,129 @@
+using System;
+
+namespace DZ_V
+{
+
+    class Man
+    {
+        private string Man_name;
+        private int Man_age;
+        public Man(string name, int age)
+        {
+            Man_name = name;
+            Man_age = age;
+        }
+
+        public void ChangeName(string name)
+        {
+            if (name != "")
+            {
+                Man_name = name;
+            }
+            else Console.WriteLine("Имя не должно быть пустым\n");
+        }
+
+        public virtual void ChangeAge(int age)
+        {
+            Man_age = age;
+        }
+
+        public virtual void Write_Man()
+        {
+            Console.WriteLine($"Man- Name: {Man_name} Age: {Man_age} \n");
+        }
+    }
+
+    class Teen : Man
+    {
+        private string Teen_Name;
+        private int Teen_age;
+        private string Teen_school;
+        public Teen(string name, int age, string School) : base(name, age)
+        {
+            Teen_Name = name;
+            Teen_age = age;
+            Teen_school = School;
+        }
+
+        public void ChangeSchool(string school)
+        {
+            Teen_school = school;
+        }
+
+        public override void ChangeAge(int age)
+        {
+            if(age >= 13 && age <= 19)
+            {
+                Teen_age = age;
+            }
+            else
+            {
+                Console.WriteLine("Это подросток ему не может быть столько лет!\n");
+            }
+        }
+
+        public override void Write_Man()
+        {
+            Console.WriteLine($"Teen- Name: {Teen_Name} Age: {Teen_age} School: {Teen_school} \n");
+        }
+
+    }
+
+   class Worker: Man
+    {
+        private string Worker_Name;
+        private int Worker_age;
+        private string Workers_job;
+
+        public Worker(string name, int age, string job) : base(name, age)
+        {
+            Worker_Name = name;
+            Worker_age = age;
+            Workers_job = job;
+        }
+
+        public override void ChangeAge(int age)
+        {
+            if (age >= 16 && age <= 70)
+            {
+                Worker_age = age;
+            }
+            else
+            {
+                Console.WriteLine("Он не трудящийся!\n");
+            }
+        }
+
+        public override void Write_Man()
+        {
+            Console.WriteLine($"Worker- Name: {Worker_Name} Age: {Worker_age} Job: {Workers_job} \n");
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Man Luffy = new Man("Mugiwara Luffy", 19);
+            Luffy.Write_Man();
+            Luffy.ChangeName("Monkey D. Luffy");
+            Luffy.ChangeAge(17);
+            Luffy.Write_Man();
+
+            Teen Sasha = new Teen("Sasha", 14, "Gymnasium 46");
+            Sasha.Write_Man();
+            Sasha.ChangeName("Alexander");
+            Sasha.ChangeAge(20);
+            Sasha.Write_Man();
+
+            Worker Dima = new Worker("Dima", 30, "Zavod");
+            Dima.Write_Man();
+            Dima.ChangeName("Dmitryi");
+            Dima.ChangeAge(16);
+            Dima.Write_Man();
+        }
+
+    }
+
+}
+
